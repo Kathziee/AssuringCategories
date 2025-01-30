@@ -1,0 +1,378 @@
+{
+	"info": {
+		"_postman_id": "f77d0505-7b5f-4931-8738-65130c6346c9",
+		"name": "Categories API",
+		"schema": "https://schema.getpostman.com/json/collection/v2.0.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "Random Generated Category",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "09a1bc0d-a662-4912-ba72-b5ef7f2ab47a",
+						"exec": [
+							"pm.test(\"Verify if API Call is successful\", function(){",
+							"    pm.response.to.have.status(200)",
+							"});",
+							"",
+							"pm.test(\"Verify if returned Category Name is Carbon credits\", function (){",
+							"    const response = pm.response.json ();",
+							"    console.log(response.Name);",
+							"    pm.expect(response.Name).to.eql(\"Carbon credits\");",
+							"});",
+							"",
+							"pm.test(\"Verify if CanRelist\", function (){",
+							"    const response = pm.response.json ();",
+							"    console.log(response.CanRelist);",
+							"    pm.expect(response.CanRelist).to.eql(true);",
+							"});",
+							"",
+							"",
+							"pm.test(\"Validate Promotion\", function (){",
+							"    const response = pm.response.json ();",
+							"    //console.log(response);",
+							"    //console.log(response.Name);",
+							"    //console.log(response.CanRelist);",
+							"    console.log(response.Promotions[1]);",
+							"    //pm.expect(response.Name).to.eql(\"Carbon credits\");",
+							"    pm.expect(response.Promotions[1].Name).to.eql(\"Gallery\");",
+							"});"
+						],
+						"type": "text/javascript",
+						"packages": {}
+					}
+				},
+				{
+					"listen": "prerequest",
+					"script": {
+						"id": "86d8e46d-6c65-4dc8-bb2c-c373e0a1dcc9",
+						"exec": [
+							"//Generate a random number between 1 and 10000",
+							"function generateRandomNumber(min,max)",
+							"{",
+							"    return Math.floor(Math.random() * (max - min + 1)) + min;",
+							"}",
+							"",
+							"//Set the randmon number to a variable",
+							"const randomNumber = generateRandomNumber(1,500);",
+							"pm.variables.set(\"randomNumber\", randomNumber);"
+						],
+						"type": "text/javascript",
+						"packages": {}
+					}
+				}
+			],
+			"id": "0282d85c-453f-4541-9b26-0f8a63a47586",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "",
+						"value": "",
+						"type": "text",
+						"disabled": true
+					}
+				],
+				"body": {
+					"mode": "urlencoded",
+					"urlencoded": [
+						{
+							"key": "CategoryId",
+							"value": "6327",
+							"type": "text",
+							"uuid": "018f571e-613a-4029-8a7d-d71a49a37b31"
+						},
+						{
+							"key": "CanRelist",
+							"value": "true",
+							"type": "text",
+							"uuid": "70d1a66b-a12d-4564-85d0-9c086ca24de5"
+						},
+						{
+							"key": "",
+							"value": "",
+							"type": "text",
+							"uuid": "c1a1329e-247c-4f8c-92eb-a08bd5f5dcf5",
+							"disabled": true
+						}
+					]
+				},
+				"url": {
+					"raw": "https://api.tmsandbox.co.nz/v1/Categories/{{randomNumber}}/Details.json?catalogue=false",
+					"protocol": "https",
+					"host": [
+						"api",
+						"tmsandbox",
+						"co",
+						"nz"
+					],
+					"path": [
+						"v1",
+						"Categories",
+						"{{randomNumber}}",
+						"Details.json"
+					],
+					"query": [
+						{
+							"key": "catalogue",
+							"value": "false"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Javascript Random Generated Category",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "32981b1d-66e5-463f-bf5d-446b077960ce",
+						"exec": [
+							"pm.test(\"Response body assertions\", function () ",
+							"{",
+							"    pm.response.to.have.status(200);",
+							"    ",
+							"    const response = pm.response.json ();",
+							"    console.log(\"Category Name\",response.Name)",
+							"    console.log(\"CanRelist\",response.CanRelist)",
+							"    console.log(\"Promotions\",response.Promotions[1])",
+							"    pm.expect(response.Name).to.eql(\"Carbon credits\")",
+							"    pm.expect(response.CanRelist).to.eql(true)",
+							"    pm.expect(response.Promotions[1].Name).to.eql(\"Gallery\")",
+							"",
+							"})"
+						],
+						"type": "text/javascript",
+						"packages": {}
+					}
+				},
+				{
+					"listen": "prerequest",
+					"script": {
+						"id": "5a92ef5d-74b9-4a61-bb75-212d63bb6790",
+						"exec": [
+							"//Generate a random number between 1 and 10000",
+							"function generateRandomNumber(min,max)",
+							"{",
+							"    return Math.floor(Math.random() * (max - min + 1)) + min;",
+							"}",
+							"",
+							"//Set the randmon number to a variable",
+							"const randomNumber = generateRandomNumber(1,500);",
+							"pm.variables.set(\"randomNumber\", randomNumber);"
+						],
+						"type": "text/javascript",
+						"packages": {}
+					}
+				}
+			],
+			"id": "b4dbfb41-c0d6-4b04-baf6-4799bf2d2a52",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "",
+						"value": "",
+						"type": "text",
+						"disabled": true
+					}
+				],
+				"body": {
+					"mode": "urlencoded",
+					"urlencoded": [
+						{
+							"key": "CategoryId",
+							"value": "6327",
+							"type": "text",
+							"uuid": "018f571e-613a-4029-8a7d-d71a49a37b31"
+						},
+						{
+							"key": "CanRelist",
+							"value": "true",
+							"type": "text",
+							"uuid": "70d1a66b-a12d-4564-85d0-9c086ca24de5"
+						},
+						{
+							"key": "",
+							"value": "",
+							"type": "text",
+							"uuid": "c1a1329e-247c-4f8c-92eb-a08bd5f5dcf5",
+							"disabled": true
+						}
+					]
+				},
+				"url": {
+					"raw": "https://api.tmsandbox.co.nz/v1/Categories/{{randomNumber}}/Details.json?catalogue=false",
+					"protocol": "https",
+					"host": [
+						"api",
+						"tmsandbox",
+						"co",
+						"nz"
+					],
+					"path": [
+						"v1",
+						"Categories",
+						"{{randomNumber}}",
+						"Details.json"
+					],
+					"query": [
+						{
+							"key": "catalogue",
+							"value": "false"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Carbon Credits Category",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "9c6503c9-40b3-4b55-bec4-0f522e8f184d",
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {",
+							"    pm.response.to.have.status(200);",
+							"});",
+							"",
+							"pm.test(\"Validate JSON value in response\", function (){",
+							"    const response = pm.response.json ();",
+							"    console.log(\"Category Name\",response.Name)",
+							"    console.log(\"CanRelist\",response.CanRelist)",
+							"    console.log(\"Promotions\",response.Promotions[1])",
+							"});"
+						],
+						"type": "text/javascript",
+						"packages": {}
+					}
+				}
+			],
+			"id": "c828fd62-cb23-4f75-9b5b-ab13e602c6df",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "https://api.tmsandbox.co.nz/v1/Categories/6/Details.json?catalogue=false",
+					"protocol": "https",
+					"host": [
+						"api",
+						"tmsandbox",
+						"co",
+						"nz"
+					],
+					"path": [
+						"v1",
+						"Categories",
+						"6",
+						"Details.json"
+					],
+					"query": [
+						{
+							"key": "catalogue",
+							"value": "false"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Manual Updated Category",
+			"event": [
+				{
+					"listen": "prerequest",
+					"script": {
+						"id": "2ecc5f22-b611-4364-be5e-a1a31d18442b",
+						"exec": [
+							"//Generate a random number between 1 and 10000",
+							"function generateRandomNumber(min,max)",
+							"{",
+							"    return Math.floor(Math.random() * (max - min + 1)) + min;",
+							"}",
+							"",
+							"//Set the randmon number to a variable",
+							"const randomNumber = generateRandomNumber(1,500);",
+							"pm.variables.set(\"randomNumber\", randomNumber);",
+							""
+						],
+						"type": "text/javascript",
+						"packages": {}
+					}
+				},
+				{
+					"listen": "test",
+					"script": {
+						"id": "f18f0838-68c5-4011-a990-a26a28ba47fe",
+						"exec": [
+							"pm.test(\"Response body assertions\", function () ",
+							"{",
+							"    pm.response.to.have.status(200);",
+							"    ",
+							"    const response = pm.response.json ();",
+							"    console.log(\"Category Name\",response.Name)",
+							"    console.log(\"CanRelist\",response.CanRelist)",
+							"    console.log(\"Promotions\",response.Promotions[1])",
+							"    pm.expect(response.Name).to.eql(\"Carbon credits\")",
+							"    pm.expect(response.CanRelist).to.eql(true)",
+							"    pm.expect(response.Promotions[1].Name).to.eql(\"Gallery\")",
+							"",
+							"})",
+							"",
+							"",
+							""
+						],
+						"type": "text/javascript",
+						"packages": {}
+					}
+				}
+			],
+			"id": "8e07489f-0bb8-410b-9a12-0ebe8d2ac2d4",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "https://api.tmsandbox.co.nz/v1/Categories/6/Details.json?catalogue=false",
+					"protocol": "https",
+					"host": [
+						"api",
+						"tmsandbox",
+						"co",
+						"nz"
+					],
+					"path": [
+						"v1",
+						"Categories",
+						"6",
+						"Details.json"
+					],
+					"query": [
+						{
+							"key": "catalogue",
+							"value": "false"
+						}
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}
