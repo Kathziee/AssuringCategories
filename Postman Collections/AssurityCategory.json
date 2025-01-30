@@ -115,7 +115,7 @@
 			"response": []
 		},
 		{
-			"name": "Manual Updated Category",
+			"name": "Carbon credits Category",
 			"event": [
 				{
 					"listen": "prerequest",
